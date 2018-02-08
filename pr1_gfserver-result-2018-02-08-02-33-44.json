@@ -1,0 +1,112 @@
+{
+    "tests": [
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "handler callback should not be called when the request is malformed.\n[debug-server] The path is /foo.jpg\r\n",
+                "passfail": "failed",
+                "server_returncode": 1,
+                "client_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 169, in test_malformed_method\n    self.run_test_malformed('method')\n  File \"run.py\", line 149, in run_test_malformed\n    self.converse(['./gfserver_main08', '-p', self.port], ['./malclient_main', '-m', malfunction, '-p', self.port])\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 186, in converse\n    self.assertIsNone(self.p_server.poll(), \"The server process exited unexpecedly. (exit code {})\".format(self.p_server.poll()))\nAssertionError: The server process exited unexpecedly. (exit code 1)\n",
+            "description": "Tests that the server properly handles a malformed request (method)."
+        },
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "handler callback should not be called when the request is malformed.\n[debug-server] The path is foo.jpg\r\n",
+                "passfail": "failed",
+                "server_returncode": 1,
+                "client_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 176, in test_malformed_path\n    self.run_test_malformed('path')\n  File \"run.py\", line 149, in run_test_malformed\n    self.converse(['./gfserver_main08', '-p', self.port], ['./malclient_main', '-m', malfunction, '-p', self.port])\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 186, in converse\n    self.assertIsNone(self.p_server.poll(), \"The server process exited unexpecedly. (exit code {})\".format(self.p_server.poll()))\nAssertionError: The server process exited unexpecedly. (exit code 1)\n",
+            "description": "Tests that the server properly handles a malformed request (path)."
+        },
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "handler callback should not be called when the request is malformed.\n[debug-server] The path is /foo.jpg\r\n",
+                "passfail": "failed",
+                "server_returncode": 1,
+                "client_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 162, in test_malformed_scheme\n    self.run_test_malformed('scheme')\n  File \"run.py\", line 149, in run_test_malformed\n    self.converse(['./gfserver_main08', '-p', self.port], ['./malclient_main', '-m', malfunction, '-p', self.port])\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 186, in converse\n    self.assertIsNone(self.p_server.poll(), \"The server process exited unexpecedly. (exit code {})\".format(self.p_server.poll()))\nAssertionError: The server process exited unexpecedly. (exit code 1)\n",
+            "description": "Tests that the server properly handles a malformed request (scheme)."
+        },
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "ASAN:SIGSEGV\n=================================================================\n==127==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7f19674c59bf bp 0x0000004c44e0 sp 0x7fff18db0c18 T0)\n    #0 0x7f19674c59be in __rawmemchr (/lib/x86_64-linux-gnu/libc.so.6+0x959be)\n    #1 0x7f19674acff1  (/lib/x86_64-linux-gnu/libc.so.6+0x7cff1)\n    #2 0x7f196749bbb6 in __isoc99_vsscanf (/lib/x86_64-linux-gnu/libc.so.6+0x6bbb6)\n    #3 0x43a8a0 in __isoc99_vsscanf (/home/vmuser_zmcnvtgh/workspace/gfserver_main07+0x43a8a0)\n    #4 0x43aa09 in __interceptor___isoc99_sscanf (/home/vmuser_zmcnvtgh/workspace/gfserver_main07+0x43aa09)\n    #5 0x4b1658 in gfserver_serve /home/vmuser_zmcnvtgh/workspace/gfserver.c:217\n    #6 0x4b1ebb in main /home/vmuser_zmcnvtgh/workspace/bvtgfserver_main.c:75\n    #7 0x7f196745082f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2082f)\n    #8 0x405588 in _start (/home/vmuser_zmcnvtgh/workspace/gfserver_main07+0x405588)\n\nAddressSanitizer can not provide additional info.\nSUMMARY: AddressSanitizer: SEGV ??:0 __rawmemchr\n==127==ABORTING\n",
+                "passfail": "failed",
+                "server_returncode": 1,
+                "client_console": "gfc_perform: Connection reset by peer\ngfc_perform returned an error -1 (gfc_get_status shows 3)\n"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 91, in test_ok_with_irregular_chunks\n    ['./bvtgfclient_main', '-p', self.port])\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 186, in converse\n    self.assertIsNone(self.p_server.poll(), \"The server process exited unexpecedly. (exit code {})\".format(self.p_server.poll()))\nAssertionError: The server process exited unexpecedly. (exit code 1)\n",
+            "description": "Tests that the server properly sends an OK response and medium message sent in different sized chunks."
+        },
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "",
+                "passfail": "failed",
+                "server_returncode": null,
+                "client_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 78, in test_ok_with_long_message\n    \"gfc_get_bytes_received should return the correct value in the test client. received = {}, sent = {}\".format(res['bytes_received'], nbytes))\nAssertionError: gfc_get_bytes_received should return the correct value in the test client. received = 104857832, sent = 104857600\n",
+            "description": "Tests that the server properly sends an OK response and a long message (more than 50MB)."
+        },
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "",
+                "passfail": "failed",
+                "server_returncode": null,
+                "client_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zmcnvtgh/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 56, in test_ok_with_short_message\n    \"gfc_get_bytes_received should return the correct value in the test client. received = {}, sent = {}\".format(res['bytes_received'], nbytes))\nAssertionError: gfc_get_bytes_received should return the correct value in the test client. received = 239, sent = 22\n",
+            "description": "Tests that the server properly sends an OK response and a short message."
+        },
+        {
+            "output": {
+                "server_console": "gcc -c -o gfserver.o -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security gfserver.c\ngfserver.c: In function 'gfs_sendheader':\ngfserver.c:86:32: warning: format '%d' expects argument of type 'int', but argument 4 has type 'size_t {aka long unsigned int}' [-Wformat=]\n         sprintf(messageBuffer, \"GETFILE %s %d%s\", statmsg,file_len,MARKER);\n                                ^\ngcc -c -o handler01.o -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security handler01.c\ngcc -c -o bvtgfserver_main.o -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security bvtgfserver_main.c\ngcc -o gfserver_main01 -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security gfserver.o handler01.o bvtgfserver_main.o -lpthread -static-libasan\ngcc -c -o handler02.o -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security handler02.c\ngcc -o gfserver_main02 -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security gfserver.o handler02.o bvtgfserver_main.o -lpthread -static-libasan\ngcc -c -o handler03.o -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security handler03.c\ngcc -o gfserver_main03 -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security gfserver.o handler03.o bvtgfserver_main.o -lpthread -static-libasan\ngcc -c -o handler05.o -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security handler05.c\ngcc -o gfserver_main05 -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security gfserver.o handler05.o bvtgfserver_main.o -lpthread -static-libasan\ngcc -c -o handler07.o -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security handler07.c\ngcc -o gfserver_main07 -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security gfserver.o handler07.o bvtgfserver_main.o -lpthread -static-libasan\ngcc -c -o handler08.o -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security handler08.c\ngcc -o gfserver_main08 -Wall --std=gnu99 -g3 -Wno-format-security -fsanitize=address -fno-omit-frame-pointer -Wno-format-security gfserver.o handler08.o bvtgfserver_main.o -lpthread -static-libasan\n",
+                "passfail": "passed",
+                "server_returncode": 0
+            },
+            "traceback": "",
+            "description": "Tests that the server compiles"
+        },
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "",
+                "passfail": "passed",
+                "server_returncode": null,
+                "client_console": ""
+            },
+            "traceback": "",
+            "description": "Tests that the server properly handles a gfs_abort call."
+        },
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "",
+                "passfail": "passed",
+                "server_returncode": null,
+                "client_console": ""
+            },
+            "traceback": "",
+            "description": "Tests that the server properly sends an ERROR response."
+        },
+        {
+            "output": {
+                "client_returncode": 0,
+                "server_console": "",
+                "passfail": "passed",
+                "server_returncode": null,
+                "client_console": ""
+            },
+            "traceback": "",
+            "description": "Tests that the server properly sends a FILE_NOT_FOUND response."
+        }
+    ]
+}
